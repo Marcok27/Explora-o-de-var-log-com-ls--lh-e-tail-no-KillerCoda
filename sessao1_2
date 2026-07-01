@@ -1,0 +1,36 @@
+# 🐧 Linux Architecture & Log Auditing: Desvendando o FHS
+
+Este repositório foi criado com o objetivo de documentar e mapear de forma prática a estrutura interna de sistemas operativos baseados em Linux (focado na distribuição Ubuntu), detalhando o funcionamento do padrão **FHS (Filesystem Hierarchy Standard)** e os mecanismos de monitorização de eventos através de logs.
+
+---
+
+## 🌳 1. Mapeamento da Raiz do Sistema (`/`)
+
+O ecossistema Linux organiza os seus ficheiros de forma predizível. Abaixo está a representação gráfica do primeiro nível da raiz do sistema, obtida através do comando de análise estrutural `tree -L 1 /` (conforme documentado na imagem `arvore FHS.png`):
+
+```bash
+root@ubuntu:~$ tree -L 1 /
+/
+├── bin -> usr/bin          # Executáveis essenciais do sistema (links simbólicos)
+├── bin.usr-is-merged
+├── boot                    # Ficheiros de inicialização (Kernel e GRUB)
+├── dev                     # Arquivos de dispositivos de hardware (devices)
+├── etc                     # Ficheiros de configuração globais do sistema
+├── home                    # Pastas pessoais dos utilizadores comuns
+├── lib -> usr/lib          # Bibliotecas essenciais partilhadas pelo sistema
+├── lib.usr-is-merged
+├── lib64 -> usr/lib64      # Bibliotecas de 64 bits essenciais
+├── lost+found              # Ficheiros recuperados por falhas no sistema
+├── media                   # Ponto de montagem para mídias removíveis (ex: Pen drives)
+├── mnt                     # Ponto de montagem temporário de sistemas de arquivos
+├── opt                     # Pacotes de software adicionais/opcionais (add-on)
+├── proc                    # Sistema virtual com informações de processos
+├── root                    # Diretório home do superutilizador (administrador)
+├── run                     # Dados de processos ativos desde o boot
+├── sbin -> usr/sbin        # Executáveis de administração do sistema (root)
+├── sbin.usr-is-merged
+├── snap                    # Aplicativos instalados via tecnologia Snap
+├── srv                     # Dados de serviços fornecidos pelo sistema (ex: Web servers)
+├── swapfile                # Ficheiro de paginação (Memória Virtual / Swap)
+├── sys                     # Configurações em tempo de execução do Kernel
+└── tmp                     # Ficheiros temporários criados por aplicações
